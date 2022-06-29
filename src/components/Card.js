@@ -1,6 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { getDetailPokemon } from '../redux/actions'
 
-export const Card = ({ name, srcImg, handleDetail, id }) => {
+export const Card = ({ name, srcImg, id }) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleDetail = (e) => {
+    dispatch(getDetailPokemon(e.target.id))
+    navigate("/detail")
+  }
   return (
     <div className='flex flex-col items-center justify-center shadow-card rounded-[19px] md:w-[257px] w-full md:h-[352px] h-full p-5 md:max-h-[352px] max-h-[250px] cursor-pointer' onClick={handleDetail} id={id}>
       <p className='text-[23px]'>#001</p>
